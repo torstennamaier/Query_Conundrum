@@ -1,0 +1,102 @@
+import winsound
+
+cards = [
+    {"number": 4, "color": "blue", "shape": "square", "background": "stripe"},
+    {"number": 4, "color": "orange", "shape": "circle", "background": "dot"}, 
+    {"number": 3, "color": "orange", "shape": "star", "background": "dot"}, 
+    {"number": 4, "color": "green", "shape": "square", "background": "dot"}, 
+    {"number": 2, "color": "blue", "shape": "star", "background": "white"},
+    {"number": 1, "color": "blue", "shape": "triangle", "background": "stripe"}, 
+    {"number": 3, "color": "orange", "shape": "square", "background": "white"}, 
+    {"number": 4, "color": "orange", "shape": "circle", "background": "stripe"}, 
+    {"number": 4, "color": "green", "shape": "square", "background": "white"},
+    {"number": 4, "color": "green", "shape": "square", "background": "white"},
+    {"number": 4, "color": "orange", "shape": "triangle", "background": "white"}, 
+    {"number": 2, "color": "yellow", "shape": "star", "background": "white"}, 
+    {"number": 2, "color": "orange", "shape": "circle", "background": "dot"}, 
+    {"number": 1, "color": "orange", "shape": "circle", "background": "white"}, 
+    {"number": 3, "color": "blue", "shape": "star", "background": "white"}, 
+    {"number": 1, "color": "yellow", "shape": "triangle", "background": "dot"}, 
+    {"number": 1, "color": "blue", "shape": "star", "background": "white"}, 
+    {"number": 2, "color": "green", "shape": "star", "background": "white"}, 
+    {"number": 4, "color": "blue", "shape": "square", "background": "dot"}, 
+    {"number": 2, "color": "orange", "shape": "triangle", "background": "white"}, 
+    {"number": 2, "color": "green", "shape": "triangle", "background": "white"}, 
+    {"number": 1, "color": "yellow", "shape": "star", "background": "dot"}, 
+    {"number": 3, "color": "orange", "shape": "circle", "background": "dot"}, 
+    {"number": 3, "color": "green", "shape": "triangle", "background": "white"}, 
+    {"number": 3, "color": "blue", "shape": "circle", "background": "dot"}, 
+    {"number": 2, "color": "yellow", "shape": "square", "background": "white"}, 
+    {"number": 2, "color": "green", "shape": "triangle", "background": "stripe"}, 
+    {"number": 1, "color": "orange", "shape": "circle", "background": "dot"}, 
+    {"number": 1, "color": "orange", "shape": "star", "background": "stripe"}, 
+    {"number": 2, "color": "yellow", "shape": "star", "background": "dot"}, 
+    {"number": 1, "color": "yellow", "shape": "square", "background": "dot"}
+]
+
+base_cards = [
+    {"number": 1, "color": "blue", "shape": "circle", "background": "stripe"}, 
+    {"number": 2, "color": "orange", "shape": "square", "background": "white"}, 
+    {"number": 3, "color": "yellow", "shape": "triangle", "background": "white"}, 
+    {"number": 4, "color": "green", "shape": "star", "background": "dot"}
+]
+
+rules = [
+    "background", 
+    "background", 
+    "background", 
+    "background", 
+    "background", 
+    "number", 
+    "number", 
+    "number", 
+    "number", 
+    "number", 
+    "background", 
+    "background", 
+    "background", 
+    "background", 
+    "background", 
+    "number", 
+    "number", 
+    "number", 
+    "number", 
+    "number", 
+    "color", 
+    "color", 
+    "color", 
+    "color", 
+    "color", 
+    "color", 
+    "shape", 
+    "shape", 
+    "shape", 
+    "shape", 
+    "shape"
+]
+
+
+def experiment():
+    performance = []
+    number_correct = 0
+    for i in range(31):
+        print(rules[i])
+        placement = int(input("Position: ")) - 1
+        if base_cards[placement][rules[i]] == cards[i][rules[i]]:
+            number_correct += 1
+            performance.append("Correct")
+            winsound.PlaySound('Correct_Sound.wav', winsound.SND_FILENAME)
+        else:
+            performance.append("Incorrect")
+            winsound.PlaySound('Incorrect_Sound.wav', winsound.SND_FILENAME)
+    print_output(performance)
+    perf_acc = (number_correct/31) * 100
+    print("Accuracy: ", perf_acc)
+
+
+def print_output(arr):
+    for i in range(len(arr)):
+        print(arr[i])
+
+
+experiment()
